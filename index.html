@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SceneVerse: Scaling 3D Vision-Language Learnding for Grounded Scene Understanding">
+  <meta name="keywords" content="3D Vision-Language Learning, Scaling effect, Grounded Scene Understanding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SceneVerse</title>
+
+  <!-- imported in PaLM-E -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+  <link rel="stylesheet" href="https://github.com/palm-e/palm-e.github.io/blob/main/css/app.css">
+
+  <link rel="stylesheet" href="https://github.com/palm-e/palm-e.github.io/blob/main/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/css/viewer_styles.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+  
+  <script src="https://github.com/palm-e/palm-e.github.io/blob/main/js/app.js"></script>
+
+  <!-- 3D Viewer -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/PLYLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/20.0.0/tween.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/2.3.15/cytoscape.js"></script>
+  <script src="https://unpkg.com/ccapture.js@1.1.0/build/CCapture.all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/2.13.1/core.min.js"></script>
+
+  <!-- imported in Nerfies -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/fontawesome.all.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./assets/logo025.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item" target="_blank" href="https://scene-verse.github.io">
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+          More Research
+          </a>
+          <div class="navbar-dropdown">
+          <a class="navbar-item" target="_blank" href="https://scenediffuser.github.io/">
+              SceneDiffuser
+          </a>
+          <a class="navbar-item" target="_blank" href="https://sqa3d.github.io/">
+              SQA3D
+          </a>
+          <a class="navbar-item" target="_blank" href="https://arnold-benchmark.github.io/">
+              ARNOLD
+          </a>
+          <a class="navbar-item" target="_blank" href="https://3d-vista.github.io/">
+              3D-VisTA
+          </a>
+          <a class="navbar-item" target="_blank" href="https://embodied-generalist.github.io/">
+              LEO
+          </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <!-- need changing -->
+            <img src="assets/logo025.png" width="30%" style="margin:0 0 30px 0" >
+            <!-- <h1 class="title is-1 publication-title"><span style="font-variant: small-caps;">SceneVerse</span>: Scaling 3D Vision-Language Learning for Grounded Scene Understanding</h1> -->
+            <h1 class="title is-1 publication-title">SceneVerse: Scaling 3D Vision-Language Learning for Grounded Scene Understanding</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://buzz-beater.github.io/">Baoxiong Jia</a><sup>1✶</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://yixchen.github.io/">Yixin Chen</a><sup>1✶</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://scholar.google.com/citations?user=fKRgnIMAAAAJ">Huangyue Yu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://github.com/jetpackfirstme">Yan Wang</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://nxsedson.github.io/">Xuesong Niu</a><sup>1</sup>,</span>
+              <br/>
+              <span class="author-block">
+                <a target="_blank" href="https://tengyu.ai/">Tengyu Liu</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://liqing-ustc.github.io/">Qing Li</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a target="_blank" href="https://siyuanhuang.com/">Siyuan Huang</a><sup>1</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Beijing Institute for General Artificial Intelligence (BIGAI)</span>
+            </div>
+
+            <p style="font-size: 0.9em; padding: 0.5em 0 0 0;">✶ indicates equal contribution</p>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Arxiv Link. need changing -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2311.12871"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://youtu.be/UnujS0EVxKU"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span>
+                <!-- Code Link. need changing -->
+                <span class="link-block">
+                  <!-- <a target="_blank" href="https://github.com/scene-verse" -->
+                  <a target="_blank"
+                    class="external-link button is-normal is-rounded is-dark disabled-link">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (soon)</span>
+                    </a>
+                </span>
+                <!-- Data Link. need changing -->
+                <span class="link-block">
+                  <!-- <a target="_blank" href="" -->
+                  <a target="_blank"
+                    class="external-link button is-normal is-rounded is-dark disabled-link">
+                    <span class="icon">
+                        <i class="fa fa-database"></i>
+                    </span>
+                    <span>Data (soon)</span>
+                    </a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+
+      <div class="subtitle has-text-justified">
+        <p>
+        <b>TL;DR</b> We propose SceneVerse, the first <b>million-scale</b> 3D vision-language dataset
+        with 68K 3D indoor scenes and 2.5M vision-language pairs. 
+        We demonstrate the scaling effect by (i) achieving state-of-the-art on all existing 3D visual grounding benchmarks and (ii) showcasing zero-shot transfer capabilities
+        with our GPS (Grounded Pre-training for Scenes) model.
+        </p>
+        <br>
+        <!-- <img src="assets/overview.png" width="100%"> -->
+        <br>
+      </div>
+
+      <!-- Paper video -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="publication-video">
+            <!-- need changing -->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/UnujS0EVxKU"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video -->
+
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              3D vision-language grounding, which focuses on aligning language with the 3D physical environment, stands as a cornerstone in the development of embodied agents.
+              In comparison to recent advancements in the 2D domain, grounding language in 3D scenes faces several significant challenges: 
+              (i) the inherent complexity of 3D scenes due to the diverse object configurations, their rich attributes, and intricate relationships; 
+              (ii) the scarcity of paired 3D vision-language data to support grounded learning; and (iii) the absence of a unified learning framework to distill knowledge from grounded 3D data. 
+              In this work, we aim to address these three major challenges in 3D vision-language by examining the potential of systematically upscaling 3D vision-language learning in indoor environments. 
+              We introduce the first million-scale 3D vision-language dataset, <span style="font-variant: small-caps;">SceneVerse</span>, 
+              encompassing about 68K 3D indoor scenes and comprising 2.5M vision-language pairs derived from both human annotations and our scalable scene-graph-based generation approach. 
+              We demonstrate that this scaling allows for a unified pre-training framework, Grounded Pre-training for Scenes (GPS), for 3D vision-language learning. 
+              Through extensive experiments, we showcase the effectiveness of GPS by achieving state-of-the-art performance on all existing 3D visual grounding benchmarks. 
+              The vast potential of SceneVerse and GPS is unveiled through zero-shot transfer experiments in the challenging 3D vision-language tasks.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Data -->
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Data</h2>
+
+          <div class="content has-text-justified">
+            <p>
+              <b>SceneVerse</b> contains 3D scenes curated from diverse existing datasets of both real and synthetic environments.
+              Harnessing the power of 3D scene graphs and LLMs, we introduce an automated pipeline to generate comprehensive and high-quality language for both object-level
+              and scene-level descriptions. We additionally incorporate the most extensive human-annotated object referrals to date, providing new training sources and benchmarks in this field.
+            </p>
+          </div>
+          <div style="width: 100%; margin: 0 auto;">
+              <img src="assets/data.png" width="100%">
+          </div>
+
+        </div>
+      </div>
+      <!--/ Data -->
+    </div>
+  </section>
+
+  <!-- Video Carousel-->
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item has-text-centered">
+            <video poster="" id="arkit" autoplay controls muted loop height="100%">
+              <source src="./assets/videos/ARKIT_lowres.mp4"
+                      type="video/mp4">
+            </video>
+            <h1 class="title is-4">ARKitScene Examples</h1>
+          </div>
+          <div class="item has-text-centered">
+            <video poster="" id="scannet" autoplay controls muted loop height="100%">
+              <source src="./assets/videos/SCANNET_lowres.mp4"
+                      type="video/mp4">
+            </video>
+            <h1 class="title is-4">ScanNet Examples</h1>
+          </div>
+          <div class="item has-text-centered">
+            <video poster="" id="multiscan" autoplay controls muted loop height="100%">
+              <source src="./assets/videos/MULTISCAN_lowres.mp4"
+                      type="video/mp4">
+            </video>
+            <h1 class="title is-4">MultiScan Examples</h1>
+          </div>
+          <div class="item has-text-centered">
+            <video poster="" id="3rscan" autoplay controls muted loop height="100%">
+              <source src="./assets/videos/3RSCAN_lowres.mp4"
+                      type="video/mp4">
+            </video>
+            <h1 class="title is-4">3RScan Examples</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Video Carousel-->
+
+  <section class="section">
+    <div class="container is-max-desktop">
+    <!-- Model -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+      <h2 class="title is-3">Model</h2>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <img src="assets/model.gif" width="100%">
+      </div>
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <b>Grounded Pre-training for Scenes (GPS)</b> is a transformer-based model trained with multi-level contrastive losses for aligning 3D scenes and texts.
+            We echo the language descriptions collected to form scene-language pairs at both object-level, referral-object-level, and scene-level for contrastive objectives in GPS.
+            The resulting model shows scaling effect in pre-train/fine-tune and zero-shot settings.
+          </p>
+          <img src="assets/scaling.jpg" width="100%">
+        </div>
+      </div>
+    </div>
+    <!--/ Model -->
+    
+    <!-- Data explorer -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+      <h2 class="title is-3">Data Explorer</h2>
+        <div class="content has-text-justified">
+          <p>
+            To use the interactive data explorer, first <b>select from the available scenes</b> in the select bar and then <b>choose a type of language</b> description
+            available in the buttons.
+            <br>
+            Options: Click + Drag = Rotate, Ctrl + Drag = Translate, Double Click = Select Object (Best viewed on monitors)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="select is-info custom-select">
+          <select id="scene_list"></select>
+        </div>
+        <div class="columns is-centered is-gapless" id="options">
+          <div class="column is-one-fifths">
+            <button id="scene_caption" for="scene_caption" class="button is-fullwidth is-outlined is-normal scene_caption">Scene Caption</label>
+          </div>
+          <div class="column">
+            <input type="checkbox" id="obj_cap">
+            <label id="obj_cap" for="obj_cap" class="button is-fullwidth is-normal obj_cap">Object Caption</label>
+          </div>
+          <div class="column">
+            <input type="checkbox" id="anno">
+            <label id="anno" for="anno" class="button is-fullwidth is-normal anno">Refer (Annotated)</label>
+          </div>
+          <div class="column">
+            <input type="checkbox" id="template">
+            <label id="template" for="template" class="button is-fullwidth is-normal template">Refer (Template)</label>
+          </div>
+          <div class="column">
+            <input type="checkbox" id="rewrite">
+            <label id="rewrite" for="rewrite" class="button is-fullwidth is-normal rewrite">Refer (LLM refined)</label>
+          </div>
+        </div>
+        <div class="columns is-full-width is-centered is-gapless">
+          <div class="column is-three-quarters">
+            <div class="card">
+              <div id="mesh_viewer"></div>
+              <div class="card-content is-overlay is-pulled-right m-0 p-0">
+                <div id="segmentation"></div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-one-quarter">
+            <div id="chat-container">
+              <div class="chat-body">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>          
+    </div>
+      </div>
+    </div>
+    <!-- Data explorer -->
+    
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code class="language-bibtex">@article{jia2024sceneverse,
+  title={SceneVerse: Scaling 3D Vision-Language Learning for Grounded Scene Understanding},
+  author={Jia, Baoxiong and Chen, Yixin and Yu, Huangyue and Wang, Yan and Niu, Xuesong and Liu, Tengyu and Li, Qing and Huang, Siyuan},
+  journal={arXiv},
+  year={2024}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+        <p>
+            Template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+        </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="./static/js/viewer.js"></script>
+
+</body>
+</html>
