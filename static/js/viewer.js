@@ -230,7 +230,7 @@ async function load_datas(){
         option.text = key;
         selected_scenes_list.add(option);
     }
-    selected_scenes_list.values = 1;
+    selected_scenes_list.value = 1;
     init_scene();
     init_tween();
 }
