@@ -230,7 +230,7 @@ async function load_datas(){
         option.text = key;
         selected_scenes_list.add(option);
     }
-    selected_scenes_list.values = 0;
+    selected_scenes_list.values = 1;
     init_scene();
     init_tween();
 }
@@ -369,7 +369,7 @@ function set_basecam(){
     cam_z = camera.position.z;
 }
 function set_light(){
-    const amblight = new THREE.AmbientLight( 'gray', 1.5); // 柔和的白光
+    const amblight = new THREE.AmbientLight( 'gray', 1.5);
     scene.add( amblight );
     const pointLight = new THREE.PointLight( 'gray', 1.5, 10 );
     const sphereSize = 1;
@@ -512,8 +512,6 @@ function add_label_listener(){
                     minBbox = box_debug(object_info["position"], object_info["size"], 5);
                     minObjectInfo = object_info;
                 }
-                // var bbox = box_debug(object_info['position'], object_info['size'], 5);
-                // var bbox = box_debug([center.x, center.y, center.z], [bboxSize.x, bboxSize.y, bboxSize.z], 5);
             }
         }
         if (minBbox != null) {
@@ -538,8 +536,6 @@ function view_scene(){
 
 function main(){
     init_mesh_viewer();
-    // scene.add(gridHelper);
     load_datas();
-    // setInterval(camera_breathe, 60);
 }
 main()
