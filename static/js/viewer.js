@@ -207,6 +207,7 @@ function displayPointCloud(file, name, size=0.02, position=false, rotation=false
     }
 }
 function init_scene(){
+    console.log(selected_scenes_list.value)
     var scene_name = selected_scenes_list.value;
     console.log(scene_name)
     var scene_info = scene_datas[scene_name];
@@ -230,7 +231,7 @@ async function load_datas(){
         option.text = key;
         selected_scenes_list.add(option);
     }
-    selected_scenes_list.value = 1;
+    selected_scenes_list.selectedIndex = 1;
     init_scene();
     init_tween();
 }
