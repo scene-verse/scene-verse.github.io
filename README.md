@@ -4,10 +4,10 @@ This is the repository that contains source code for the [SceneVerse website](ht
 
 If you find SceneVerse useful for your work please cite:
 ```bibtex
-@article{jia2024sceneverse,
-  title={SceneVerse: Scaling 3D Vision-Language Learning for Grounded Scene Understanding},
+@inproceedings{jia2024sceneverse,
+  title={Sceneverse: Scaling 3d vision-language learning for grounded scene understanding},
   author={Jia, Baoxiong and Chen, Yixin and Yu, Huangyue and Wang, Yan and Niu, Xuesong and Liu, Tengyu and Li, Qing and Huang, Siyuan},
-  journal={arXiv},
+  booktitle={European Conference on Computer Vision (ECCV)},
   year={2024}
 }
 ```
